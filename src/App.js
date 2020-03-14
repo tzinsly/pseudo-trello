@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Board from './components/Board'
+import data from './sampleData'
+import Home from './components/pages/Home'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    boards: [],
+    lists: []
+  }
+
+  componentDidMount() {
+    this.setState(
+      { boards: data.boards }
+    )
+  }
+
+  createNewBoard = board => {
+    this.setState({ boards: [...this.state.boards, board] })
+  }
+
+  render() {
+    return (
+      <div>
+        <div id="header"> Pseud Trello </div>  
+        <Home boards={this.state.boards}
+          createNewBoard={this.createNewBoard} />
+
+          
+      </div>
+
+    );
+  }
+
 }
 
 export default App;
