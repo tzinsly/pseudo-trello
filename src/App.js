@@ -27,8 +27,7 @@ class App extends React.Component {
         <div id="header"> Pseud Trello </div>  
         <Home boards={this.state.boards}
           createNewBoard={this.createNewBoard} />
-
-          
+        <Board />
       </div>
 
     );

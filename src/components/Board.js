@@ -12,21 +12,24 @@ class Board extends React.Component {
         this.setState({ currentLists : data.lists })
     }
 
+    createNewList = () => {
+        const list = {
+            id: Math.random(),
+            title: "My First List",
+            board: 300,
+            createdAt: new Date()
+        }
+        this.setState({ currentLists: [...this.state.currentLists, list] })
+    }
+
     render(){
         return (
             <div className="list-wrapper">
-                {
-                    Object.keys(this.state.currentLists).map( key => (
-                        <List
-                            title={this.props.title}
-                            key={this.state.currentLists[key].id}
-                        />
-
-                    ))
-
-                }
-            </div>
-            
+                <button onClick={this.createNewList}>Create New List</button>
+                { Object.keys(this.state.currentLists).map( key => (
+                    <List key={this.state.currentLists[key].id} />
+                    ))}
+            </div>            
         )
     }
 }

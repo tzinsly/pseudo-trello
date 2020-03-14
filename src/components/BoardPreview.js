@@ -4,9 +4,7 @@ import Board from './Board'
 class BoardPreview extends React.Component {
     render(){
         return (
-            <Board 
-                title={this.props.board.title}
-                background={this.props.board.background}/>
+            <p>{this.props.board.title}</p>
         )
     }
 }
