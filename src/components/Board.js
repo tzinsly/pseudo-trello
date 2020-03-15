@@ -17,6 +17,20 @@ class Board extends React.Component {
             id: Math.random(),
             title: "My First List",
             board: 300,
+            cards : [
+                {
+                    id: 1,
+                    text: 'Task 1'
+                },
+                {
+                    id: 2,
+                    text: 'Task 2'
+                },
+                {
+                    id: 3,
+                    text: 'Task 3'
+                } 
+            ],
             createdAt: new Date()
         }
         this.setState({ currentLists: [...this.state.currentLists, list] })
@@ -27,7 +41,9 @@ class Board extends React.Component {
             <div className="list-wrapper">
                 <button onClick={this.createNewList}>Create New List</button>
                 { Object.keys(this.state.currentLists).map( key => (
-                    <List key={this.state.currentLists[key].id} />
+                    <List 
+                        key={this.state.currentLists[key].id} 
+                        list={this.state.currentLists[key]}/>
                     ))}
             </div>            
         )

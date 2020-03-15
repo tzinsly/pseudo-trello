@@ -1,14 +1,26 @@
 import React from 'react'
 import Card from './Card'
+import PropTypes from 'prop-types'
 
 class List extends React.Component {
     render () {
         return (
-            <div>
-                <p>List Component</p>
+            <div className="list">
+                <div className="list-header">
+                    <h2>{this.props.list.title}</h2>
+                </div>
+                {Object.keys(this.props.list.cards).map( key => (
+                    <Card
+                        key={key}
+                        cardData={this.props.list.cards[key]}/>
+                ))}
             </div>
         )
     }
+}
+
+List.propTypes = {
+    list: PropTypes.object.isRequired
 }
 
 export default List

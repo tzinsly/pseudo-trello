@@ -6,32 +6,32 @@ import Home from './components/pages/Home'
 
 class App extends React.Component {
 
-  state = {
-    boards: [],
-    lists: []
-  }
+    state = {
+        boards: [],
+        lists: []
+    }
 
-  componentDidMount() {
-    this.setState(
-      { boards: data.boards }
-    )
-  }
+    componentDidMount() {
+        this.setState({ boards: data.boards })
+    }
 
-  createNewBoard = board => {
-    this.setState({ boards: [...this.state.boards, board] })
-  }
+    createNewBoard = board => {
+        this.setState({ boards: [...this.state.boards, board] })
+    }
 
-  render() {
-    return (
-      <div>
-        <div id="header"> Pseud Trello </div>  
-        <Home boards={this.state.boards}
-          createNewBoard={this.createNewBoard} />
-        <Board />
-      </div>
-
-    );
-  }
+    render() {
+        return ( 
+            <div>
+                <header>
+                    <h1>Pseud Trello</h1>
+                    <div className="user-area">user area</div>
+                </header>
+                <Home boards = { this.state.boards }
+                      createNewBoard = { this.createNewBoard }/> 
+                <Board />
+            </div>
+        );
+    }
 
 }
 
