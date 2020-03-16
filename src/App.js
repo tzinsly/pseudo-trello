@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css'
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -28,103 +29,103 @@ const useStyles = {
   }
 };
 
-export default withStyles(useStyles)(
-  class App extends React.Component {
+class App extends React.Component {
 
-    state = {
-      boards: [],
-      lists: [],
-      auth: false,
-      anchorE1: null
-    }
-
-    //const [auth, setAuth] = React.useState(true);
-    setAuth(isChecked) {
-      this.setState({ auth: isChecked });
-    }
-
-    //const [anchorEl, setAnchorEl] = React.useState(null);
-    setAnchorE1() {
-      this.setState({ anchorEl: null });
-    }
-
-    handleChange = event => {
-      this.setAuth(event.target.checked);
-    };
-
-    handleMenu = event => {
-      this.setAnchorEl(event.currentTarget);
-    };
-
-    handleClose = () => {
-      this.setAnchorEl(null);
-    };
-
-    componentDidMount() {
-      this.setState({ boards: data.boards })
-    }
-
-    createNewBoard = board => {
-      this.setState({ boards: [...this.state.boards, board] })
-    }
-
-    render() {
-      const open = Boolean(this.state.anchorEl);
-
-      return (
-        <div className={this.props.classes.root}>
-          <FormGroup>
-            <FormControlLabel
-              control={<Switch checked={this.state.auth} onChange={this.handleChange} aria-label="login switch" />}
-              label={this.state.auth ? 'Logout' : 'Login'}
-            />
-          </FormGroup>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton edge="start" className={this.props.classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" className={this.props.classes.title}>
-                Pseud Trello
-          </Typography>
-              {this.state.auth && (
-                <div>
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={this.handleMenu}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={this.state.anchorEl}
-                    anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    open={open}
-                    onClose={this.handleClose}
-                  >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  </Menu>
-                </div>
-              )}
-            </Toolbar>
-          </AppBar>
-          <Home boards={this.state.boards}
-                    createNewBoard={this.createNewBoard} />
-          <Board />
-        </div>
-      );
-    }
+  state = {
+    boards: [],
+    lists: [],
+    auth: false,
+    anchorE1: null
   }
-)
+
+  //const [auth, setAuth] = React.useState(true);
+  setAuth(isChecked) {
+    this.setState({ auth: isChecked });
+  }
+
+  //const [anchorEl, setAnchorEl] = React.useState(null);
+  setAnchorE1() {
+    this.setState({ anchorEl: null });
+  }
+
+  handleChange = event => {
+    this.setAuth(event.target.checked);
+  };
+
+  handleMenu = event => {
+    this.setAnchorEl(event.currentTarget);
+  };
+
+  handleClose = () => {
+    this.setAnchorEl(null);
+  };
+
+  componentDidMount() {
+    this.setState({ boards: data.boards })
+  }
+
+  createNewBoard = board => {
+    this.setState({ boards: [...this.state.boards, board] })
+  }
+
+  render() {
+    const open = Boolean(this.state.anchorEl);
+
+    return (
+      <div className={this.props.classes.root}>
+        <FormGroup className="form-control">
+          <FormControlLabel
+            control={<Switch checked={this.state.auth} onChange={this.handleChange} aria-label="login switch" />}
+            label={this.state.auth ? 'Logout' : 'Login'}
+          />
+        </FormGroup>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton edge="start" className={this.props.classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className={this.props.classes.title}>
+              Pseud Trello
+          </Typography>
+            {this.state.auth && (
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                </Menu>
+              </div>
+            )}
+          </Toolbar>
+        </AppBar>
+        <Home boards={this.state.boards}
+          createNewBoard={this.createNewBoard} />
+        <Board />
+      </div>
+    );
+  }
+}
+
+export default withStyles(useStyles)(App)

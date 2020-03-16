@@ -2,3 +2,8 @@
   margin-left: 80%;
   position: relative;
 }
+
+#create-board:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+}

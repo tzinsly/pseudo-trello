@@ -38,9 +38,7 @@ h2 {
 /* HEADER */
 
 header {
-    background: rgb(73, 176, 236);
     display: flex;
-    align-items: center;
 }
 
 header h1 {
@@ -59,6 +57,11 @@ header a {
     flex: 4;
     margin-right: 20px;
     text-align: right;
+}
+
+.form-control {
+  background: lightblue;
+  color: white
 }
 
 
