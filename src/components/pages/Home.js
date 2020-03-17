@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import BoardPreview from '../BoardPreview'
 import PropTypes from 'prop-types'
+import CreateBoardForm from '../CreateBoardForm'
 
 const useStyles = {
   createBoard: {
@@ -27,7 +28,8 @@ class Home extends React.Component {
     render(){
         return (
             <div>
-                <Button id="create-board" variant="contained" color="secondary" className={this.props.classes.createBoard} onClick={this.newBoard}>Create New Board</Button>
+              <CreateBoardForm />
+              <div className="board-preview-wrapper">
                 {
                     //Using Object.keys because it is an Array of Boards
                     Object.keys(this.props.boards).map( key => (
@@ -35,6 +37,7 @@ class Home extends React.Component {
                             key={key}
                             board={this.props.boards[key]}/>
                 ))}
+                </div>
             </div>
         )
     }
