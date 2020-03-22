@@ -87,8 +87,13 @@ header a {
 
 
 /* CREATE BOARD FORM */
+#outlined-basic {
+  height: 10px;
+}
 
-
+#button-submit {
+  height: 45px;
+}
 
 
 /* BOARD */
