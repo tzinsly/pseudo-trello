@@ -11,8 +11,8 @@ class BoardPreview extends React.Component {
     }
 }
 
+export default BoardPreview
+
 BoardPreview.propTypes = {
     board: PropTypes.object.isRequired
 }
-
-export default BoardPreview

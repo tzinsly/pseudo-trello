@@ -19,8 +19,8 @@ class List extends React.Component {
     }
 }
 
-List.propTypes = {
-    list: PropTypes.object.isRequired
-}
-
 export default List
+
+List.propTypes = {
+  list: PropTypes.object.isRequired
+}

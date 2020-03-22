@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types'
 
 const useStyles = theme => ({
   root: {
@@ -35,7 +36,15 @@ class CreateBoardForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
+    const board = {
+      title: this.state.title,
+      background: this.state.background,
+      createdAt: new Date(),
+      user: 'anika'
+    }
+    if (board.title && board.background) {
+      this.props.createNewBoard(board)
+    }
   }
 
   render() {
@@ -59,7 +68,7 @@ class CreateBoardForm extends React.Component {
               <em>None</em>
             </MenuItem>
             <MenuItem value={"#99b3ff"}>Blue</MenuItem>
-            <MenuItem value={"#ffffb3"}>Yello</MenuItem>
+            <MenuItem value={"#ffffb3"}>Yellow</MenuItem>
             <MenuItem value={"#bfff80"}>Green</MenuItem>
             <MenuItem value={"#d580ff"}>Purple</MenuItem>
             <MenuItem value={"#ffb3ff"}>Pink</MenuItem>
@@ -75,4 +84,6 @@ class CreateBoardForm extends React.Component {
 
 export default withStyles(useStyles)(CreateBoardForm)
 
-
+CreateBoardForm.propTypes = {
+  createNewBoard: PropTypes.func.isRequired
+}

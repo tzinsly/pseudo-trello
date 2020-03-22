@@ -16,19 +16,11 @@ const useStyles = {
 };
 
 class Home extends React.Component {
-    newBoard = () => {
-        const board = {
-            title: "Summer Trips",
-            background: "#FF5733",
-            createdAt: new Date()
-        }
-        this.props.createNewBoard(board)
-    }
-
     render(){
         return (
             <div>
-              <CreateBoardForm />
+              <CreateBoardForm 
+                createNewBoard={this.props.createNewBoard}/>
               <div className="board-preview-wrapper">
                 {
                     //Using Object.keys because it is an Array of Boards
