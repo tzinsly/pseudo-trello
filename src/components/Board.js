@@ -29,10 +29,13 @@ class Board extends React.Component {
         this.setState({ currentLists : data.lists })
     }
 
-    createNewList = () => {
+    newInputBoard = React.createRef()
+    createNewList = (e) => {
+        e.preventDefault()
+        //console.log(this.newInputBoard.current.value)
         const list = {
             id: Math.random(),
-            title: "My First List",
+            title: this.newInputBoard.current.value,
             board: 300,
             cards : [
                 {
@@ -50,21 +53,35 @@ class Board extends React.Component {
             ],
             createdAt: new Date()
         }
-        this.setState({ currentLists: [...this.state.currentLists, list] })
+
+        if (list.title) {
+          this.setState({ currentLists: [...this.state.currentLists, list] })
+        }
+        this.newInputBoard.current.value = ''
+        
     }
 
     render(){
         return (
+          <div>
             <div className="list-wrapper">
               <div className={this.props.classes.root}>
-                <Button className={this.props.classes.createList} variant="contained" color="secondary" onClick={this.createNewList}>Create New List</Button>
                 { Object.keys(this.state.currentLists).map( key => (
                     <List 
                         key={this.state.currentLists[key].id} 
                         list={this.state.currentLists[key]}/>
                     ))}
               </div>
-            </div>            
+            </div>
+            <form onSubmit={this.createNewList}
+              className="new-list-wrapper">
+              <input
+                type="text"
+                name="name"
+                ref={this.newInputBoard}
+                placeholder=" + New List" />
+            </form> 
+            </div>           
         )
     }
 }

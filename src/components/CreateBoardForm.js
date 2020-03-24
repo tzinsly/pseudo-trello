@@ -14,6 +14,12 @@ const useStyles = theme => ({
       margin: theme.spacing(1),
       width: '300px'
     },
+  },
+  createList: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
   }
 });
 
@@ -74,7 +80,7 @@ class CreateBoardForm extends React.Component {
             <MenuItem value={"#ffb3ff"}>Pink</MenuItem>
           </Select>
         </FormControl>
-        <Button id="button-submit" type="submit" form="create-board-form" variant="contained" color="secondary">
+        <Button id="button-submit" className={this.props.classes.createList} type="submit" form="create-board-form" variant="contained" color="secondary">
           Create New Board
         </Button>
       </form>
