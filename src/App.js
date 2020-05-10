@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
+import SwitchUI from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,6 +16,8 @@ import data from './sampleData'
 import Home from './components/pages/Home'
 import Board from './components/Board'
 import styles from './'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import PageNotFound from './components/pages/PageNotFound'
 
 const useStyles = {
   root: {
@@ -35,7 +37,7 @@ class App extends React.Component {
     boards: [],
     lists: [],
     auth: false,
-    anchorE1: null
+    anchorEl: null
   }
 
   //const [auth, setAuth] = React.useState(true);
@@ -44,8 +46,8 @@ class App extends React.Component {
   }
 
   //const [anchorEl, setAnchorEl] = React.useState(null);
-  setAnchorE1() {
-    this.setState({ anchorEl: null });
+  setAnchorEl(currentTarget) {
+    this.setState({ anchorEl: currentTarget });
   }
 
   handleChange = event => {
@@ -68,14 +70,17 @@ class App extends React.Component {
     this.setState({ boards: [...this.state.boards, board] })
   }
 
+
+
   render() {
+
     const open = Boolean(this.state.anchorEl);
 
     return (
       <div className={this.props.classes.root}>
         <FormGroup className="form-control">
           <FormControlLabel
-            control={<Switch checked={this.state.auth} onChange={this.handleChange} aria-label="login switch" />}
+            control={<SwitchUI checked={this.state.auth} onChange={this.handleChange} aria-label="login switch" />}
             label={this.state.auth ? 'Logout' : 'Login'}
           />
         </FormGroup>
@@ -120,9 +125,27 @@ class App extends React.Component {
             )}
           </Toolbar>
         </AppBar>
-        <Home boards={this.state.boards}
-          createNewBoard={this.createNewBoard} />
-        <Board />
+
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/:userId/boards"
+              render={(props) => (
+                <Home
+                  {...props}
+                  boards={this.state.boards}
+                  createNewBoard={this.createNewBoard} />
+              )} />
+            <Route path="/board/:boardId"
+              render={(props) => (
+                <Board
+                  {...props}
+                />
+              )} />
+            <Route component={PageNotFound} />
+
+          </Switch>
+        </BrowserRouter>
+
       </div>
     );
   }

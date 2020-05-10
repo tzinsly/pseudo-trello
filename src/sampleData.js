@@ -12,7 +12,7 @@ const boards = [
     {
         id: 3000,
         title: 'Apps Ideas',
-        background: '#80ccff',
+        background: '#bfff80',
     }
 ]
 

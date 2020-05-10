@@ -63,12 +63,18 @@ class Board extends React.Component {
 
     render(){
         return (
-          <div>
+          <div 
+            className="board-wrapper"
+            style={{ background: this.props.location.state.background }}>
+              <div className="board-header">
+                <h3>{this.props.location.state.title}</h3>
+                <button>Delete Board</button>
+              </div>
             <div className="list-wrapper">
               <div className={this.props.classes.root}>
                 { Object.keys(this.state.currentLists).map( key => (
                     <List 
-                        key={this.state.currentLists[key].id} 
+                        key={this.state.currentLists[key].id}
                         list={this.state.currentLists[key]}/>
                     ))}
               </div>
